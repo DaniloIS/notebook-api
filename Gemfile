@@ -9,6 +9,11 @@ gem 'rails', '~> 5.2.8'
 gem 'rails-i18n'
 gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'jwt'
+gem 'devise_token_auth'
+gem 'devise-i18n'
+gem 'versionist', '~> 1.5.0'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
