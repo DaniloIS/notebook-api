@@ -5,7 +5,10 @@ ruby '2.4.10'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.8'
+
 gem 'rails-i18n'
+gem 'rack-cors'
+gem 'active_model_serializers', '~> 0.10.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -34,6 +37,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   
   gem 'faker'
+
+  gem 'pry-rails'
 end
 
 group :development do
