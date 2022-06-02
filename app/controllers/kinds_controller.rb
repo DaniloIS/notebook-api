@@ -1,4 +1,14 @@
 class KindsController < ApplicationController
+
+  TOKEN = "secret123"
+
+  # include ActionController::HttpAuthentication::Basic::ControllerMethods
+  # http_basic_authenticate_with name: "danilo", password: "123"
+  # include ActionController::HttpAuthentication::Digest::ControllerMethods
+  # USERS = { "danilo" => Digest::MD5.hexdigest(["jack","Application","123"].join(":"))}
+  include ActionController::HttpAuthentication::Token::ControllerMethods
+
+  before_action :authenticate
   before_action :set_kind, only: [:show, :update, :destroy]
 
   # GET /kinds
@@ -41,11 +51,29 @@ class KindsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_kind
+      if params[:contact_id]
+        @kind = Contact.find(params[:contact_id]).kind
+        return @kind
+      end
+
       @kind = Kind.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def kind_params
       params.require(:kind).permit(:description)
+    end
+
+
+    def authenticate
+      # authenticate_or_request_with_http_digest("Application") do |username|
+      #   USERS[username]
+      # end
+      authenticate_or_request_with_http_token do |token, options|
+        ActiveSupport::SecurityUtils.secure_compare(
+          ::Digest::SHA256.hexdigest(token),
+          ::Digest::SHA256.hexdigest(TOKEN)
+        )
+      end
     end
 end
