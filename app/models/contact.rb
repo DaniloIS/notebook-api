@@ -1,5 +1,8 @@
 class Contact < ApplicationRecord
 
+  before_destroy :destroy_phones
+  before_destroy :destroy_addresses
+
   # Associations
   belongs_to :kind #, optional: true
   has_many :phones
@@ -43,4 +46,14 @@ class Contact < ApplicationRecord
   # def i18n
   #   I18n.default_locale
   # end
+
+  private
+   
+  def destroy_phones
+    self.phones.destroy_all
+  end
+ 
+  def destroy_addresses
+    self.address.destroy
+  end
 end
