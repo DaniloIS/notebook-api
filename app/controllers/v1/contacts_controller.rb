@@ -17,16 +17,16 @@ module V1
       # end
 
       # Last-Modified
-      if stale?(last_modified: @contacts[0].updated_at)
+      #if stale?(last_modified: @contacts[0].updated_at)
         render json: @contacts #, methods: [:hello, :i18n]
-      end
+      #end
 
       # paginate json: @contacts #, methods: [:hello, :i18n]
     end
 
     # GET /contacts/1
     def show
-      render json: @contact, include: [:kind, :phones, :address]#, meta: { author: "Danilo Isidoro" }
+      render json: @contact #, include: [:kind, :phones, :address]#, meta: { author: "Danilo Isidoro" }
     end
 
     # POST /contacts

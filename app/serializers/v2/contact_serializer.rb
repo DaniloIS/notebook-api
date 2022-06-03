@@ -6,16 +6,13 @@ module V2
       link(:related) { v2_contact_kind_url(object.id) }
     end
   
-    belongs_to :phones do
+    has_many :phones do
       link(:related) { v2_contact_phones_url(object.id) }
     end
   
-    belongs_to :address do
+    has_one :address do
       link(:related) { v2_contact_address_url(object.id) }
     end
-  
-    has_many :phones
-    has_one :address
   
     # link(:self) { contact_url(object.id) }
     # link(:kind) { kind_url(object.kind.id) }
