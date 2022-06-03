@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   #resources :auths, only: [:create]
   resources :kinds
-  resources :phones
 
   api_version(:module => "V1", :path => { :value => "v1" }) do
   # constraints subdomain: 'v1' do

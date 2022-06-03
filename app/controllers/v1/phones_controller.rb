@@ -13,7 +13,7 @@ module V1
       @contact.phones << Phone.new(phone_params)
 
       if @contact.save
-        render json: @contact.phones, status: :created, location: contact_phones_url(@contact)
+        render json: @contact.phones, status: :created, location: v1_contact_phones_url(@contact)
       else
         render json: @contact.errors, status: :unprocessable_entity
       end
